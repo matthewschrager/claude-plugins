@@ -58,11 +58,15 @@ You are helping a developer implement a new feature using a systematic 7-phase a
 
 **Feature request:** $ARGUMENTS
 
-Before starting, run the initialization script:
+Before starting, run the initialization script with a **short feature name** (2-4 words max):
 
 ```bash
-bash ${CLAUDE_PLUGIN_ROOT}/scripts/init-feature.sh "$ARGUMENTS"
+bash ${CLAUDE_PLUGIN_ROOT}/scripts/init-feature.sh "<short-feature-name>"
 ```
+
+**Important**: Derive a succinct slug from the feature request—do NOT pass the full `$ARGUMENTS` verbatim. Long directory names cause filesystem errors. Examples:
+- "Add user authentication with JWT tokens and refresh token rotation" → `"user-auth-jwt"`
+- "Fix the bug where clicking submit twice creates duplicate entries" → `"duplicate-submit-fix"`
 
 This creates:
 - `plans/{feature-slug}/task_plan.md` — 7-phase workflow tracking
