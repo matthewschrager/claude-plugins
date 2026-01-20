@@ -3,8 +3,8 @@
 # Exit 0 if complete, exit 1 if incomplete
 # Used by Stop hook to verify task completion
 
-# Get current feature from context file
-FEATURE_SLUG=$(cat .feature-dev-context 2>/dev/null)
+# Get current feature from context file (line 1 = slug)
+FEATURE_SLUG=$(head -1 .feature-dev-context 2>/dev/null)
 
 if [ -z "$FEATURE_SLUG" ]; then
     echo "No active feature context found (.feature-dev-context missing)"

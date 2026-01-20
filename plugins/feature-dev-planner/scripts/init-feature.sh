@@ -46,8 +46,24 @@ for template in task_plan.md findings.md progress.md; do
     fi
 done
 
+# Detect if we're in a git worktree
+WORKTREE_PATH=""
+if git rev-parse --git-dir >/dev/null 2>&1; then
+    GIT_COMMON=$(git rev-parse --git-common-dir 2>/dev/null)
+    GIT_DIR=$(git rev-parse --git-dir 2>/dev/null)
+    if [ "$GIT_COMMON" != "$GIT_DIR" ] && [ -n "$GIT_COMMON" ]; then
+        WORKTREE_PATH=$(pwd)
+        echo "  Worktree detected: $WORKTREE_PATH"
+    fi
+fi
+
 # Write context file for hooks to find the current feature
-echo "$FEATURE_SLUG" > .feature-dev-context
+# Line 1: feature slug, Line 2: worktree path (if any)
+if [ -n "$WORKTREE_PATH" ]; then
+    printf "%s\n%s\n" "$FEATURE_SLUG" "$WORKTREE_PATH" > .feature-dev-context
+else
+    echo "$FEATURE_SLUG" > .feature-dev-context
+fi
 echo "  Created: .feature-dev-context"
 
 echo ""

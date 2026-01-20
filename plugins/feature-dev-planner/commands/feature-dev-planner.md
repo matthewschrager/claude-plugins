@@ -19,7 +19,11 @@ hooks:
       hooks:
         - type: command
           command: |
-            F=$(cat .feature-dev-context 2>/dev/null)
+            F=$(head -1 .feature-dev-context 2>/dev/null)
+            W=$(sed -n '2p' .feature-dev-context 2>/dev/null)
+            if [ -n "$W" ]; then
+              echo "=== WORKTREE: $W ==="
+            fi
             if [ -n "$F" ] && [ -f "plans/$F/task_plan.md" ]; then
               echo "=== Current Plan (plans/$F/task_plan.md) ==="
               head -50 "plans/$F/task_plan.md"
@@ -30,7 +34,7 @@ hooks:
       hooks:
         - type: command
           command: |
-            F=$(cat .feature-dev-context 2>/dev/null)
+            F=$(head -1 .feature-dev-context 2>/dev/null)
             [ -n "$F" ] && echo "[feature-dev-planner] File updated. If this completes a phase, update plans/$F/task_plan.md status."
   Stop:
     - hooks:
