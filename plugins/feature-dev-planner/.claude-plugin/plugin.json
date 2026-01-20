@@ -1,0 +1,9 @@
+{
+  "name": "feature-dev-planner",
+  "description": "7-phase feature development workflow with persistent markdown planning",
+  "version": "1.0.0",
+  "author": {
+    "name": "Matthew Schrager",
+    "url": "https://github.com/matthewschrager"
+  }
+}

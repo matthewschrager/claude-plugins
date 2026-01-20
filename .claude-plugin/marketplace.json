@@ -1,0 +1,15 @@
+{
+  "name": "mschrager-plugins",
+  "owner": {
+    "name": "Matthew Schrager",
+    "url": "https://github.com/matthewschrager"
+  },
+  "plugins": [
+    {
+      "name": "feature-dev-planner",
+      "source": "./plugins/feature-dev-planner",
+      "description": "7-phase feature development workflow with persistent markdown planning",
+      "version": "1.0.0"
+    }
+  ]
+}
