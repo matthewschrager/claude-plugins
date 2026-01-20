@@ -34,6 +34,10 @@ Usage:
 /feature-dev-planner Add user authentication with JWT tokens
 ```
 
+> **Note:** This plugin combines concepts from two excellent sources:
+> - [**feature-dev**](https://github.com/anthropics/claude-code/tree/main/plugins/feature-dev) — Anthropic's official plugin providing guided feature development with specialized agents (code-explorer, code-architect, code-reviewer)
+> - [**planning-with-files**](https://github.com/OthmanAdi/planning-with-files) — OthmanAdi's Manus-style persistent markdown planning pattern for context engineering
+
 ## Adding More Plugins
 
 Future plugins will be added to the `plugins/` directory.
