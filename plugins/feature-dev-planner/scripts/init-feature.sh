@@ -14,6 +14,9 @@ if [ -z "$FEATURE_SLUG" ]; then
     FEATURE_SLUG="unnamed-feature"
 fi
 
+# Escape special characters for safe sed replacement (handles \, /, &)
+FEATURE_NAME_ESCAPED=$(printf '%s' "$FEATURE_NAME" | sed 's/[\\/&]/\\&/g')
+
 PLAN_DIR="$(pwd)/plans/$FEATURE_SLUG"
 DATE=$(date +%Y-%m-%d)
 
@@ -35,7 +38,7 @@ for template in task_plan.md findings.md progress.md; do
 
     if [ ! -f "$OUTPUT_PATH" ]; then
         if [ -f "$TEMPLATE_PATH" ]; then
-            sed "s/{FEATURE_NAME}/$FEATURE_NAME/g; s/{DATE}/$DATE/g" \
+            sed "s/{FEATURE_NAME}/$FEATURE_NAME_ESCAPED/g; s/{DATE}/$DATE/g" \
                 "$TEMPLATE_PATH" > "$OUTPUT_PATH"
             echo "  Created: $template"
         else
