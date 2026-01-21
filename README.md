@@ -19,6 +19,7 @@ Then install individual plugins:
 | Plugin | Description |
 |--------|-------------|
 | [feature-dev-planner](./plugins/feature-dev-planner) | 7-phase feature development workflow with persistent markdown planning |
+| [feature-brainstorm](./plugins/feature-brainstorm) | Brainstorm large features, break into tasks, and push to Linear |
 
 ## Plugin Details
 
@@ -37,6 +38,21 @@ Usage:
 > **Note:** This plugin combines concepts from two excellent sources:
 > - [**feature-dev**](https://github.com/anthropics/claude-code/tree/main/plugins/feature-dev) — Anthropic's official plugin providing guided feature development with specialized agents (code-explorer, code-architect, code-reviewer)
 > - [**planning-with-files**](https://github.com/OthmanAdi/planning-with-files) — OthmanAdi's Manus-style persistent markdown planning pattern for context engineering
+
+### feature-brainstorm
+
+Brainstorm large features, break them into digestible tasks, and push to Linear:
+- **5-Phase Workflow**: Feature Capture → Codebase Exploration → Interactive Brainstorm → Task Breakdown → Linear Push
+- **Specialized Agents**: brainstorm-facilitator, task-breakdown-expert
+- **Linear Integration**: Creates parent issue (epic) + sub-issues with detailed specs
+- **Task Specs**: Full context, acceptance criteria, suggested approach for coding agents
+
+Usage:
+```bash
+/feature-brainstorm Add real-time collaboration with presence indicators
+```
+
+**Prerequisite:** Linear MCP server configured (`https://mcp.linear.app/mcp`)
 
 ## Adding More Plugins
 
