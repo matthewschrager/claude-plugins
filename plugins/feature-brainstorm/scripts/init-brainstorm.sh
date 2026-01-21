@@ -1,15 +1,14 @@
 #!/bin/bash
-# Initialize feature planning directory with templates
-# Usage: init-feature.sh <feature-name>
+# Initialize brainstorm session directory with templates
+# Usage: init-brainstorm.sh <feature-name>
 
 set -e
 
 FEATURE_NAME="${1:-unnamed-feature}"
 
-# Create slug from feature name (lowercase, hyphens, alphanumeric only)
+# Create slug (lowercase, hyphens, alphanumeric only)
 FEATURE_SLUG=$(echo "$FEATURE_NAME" | tr '[:upper:]' '[:lower:]' | tr ' ' '-' | sed 's/[^a-z0-9-]//g')
 
-# Ensure we have a valid slug
 if [ -z "$FEATURE_SLUG" ]; then
     FEATURE_SLUG="unnamed-feature"
 fi
@@ -17,28 +16,26 @@ fi
 # Escape special characters for safe sed replacement (handles \, /, &)
 FEATURE_NAME_ESCAPED=$(printf '%s' "$FEATURE_NAME" | sed 's/[\\/&]/\\&/g')
 
-PLAN_DIR="$(pwd)/plans/$FEATURE_SLUG"
+BRAINSTORM_DIR="$(pwd)/brainstorms/$FEATURE_SLUG"
 DATE=$(date +%Y-%m-%d)
 
-# Get the plugin root directory (parent of scripts/)
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PLUGIN_ROOT="$(dirname "$SCRIPT_DIR")"
 
-echo "Initializing feature: $FEATURE_NAME"
+echo "Initializing brainstorm: $FEATURE_NAME"
 echo "  Slug: $FEATURE_SLUG"
-echo "  Directory: $PLAN_DIR"
+echo "  Directory: $BRAINSTORM_DIR"
 
-# Create plans directory
-mkdir -p "$PLAN_DIR"
+mkdir -p "$BRAINSTORM_DIR"
 
 # Copy and substitute templates
-for template in task_plan.md findings.md progress.md; do
+for template in brainstorm.md task_breakdown.md linear_issues.md; do
     TEMPLATE_PATH="$PLUGIN_ROOT/templates/$template"
-    OUTPUT_PATH="$PLAN_DIR/$template"
+    OUTPUT_PATH="$BRAINSTORM_DIR/$template"
 
     if [ ! -f "$OUTPUT_PATH" ]; then
         if [ -f "$TEMPLATE_PATH" ]; then
-            sed "s/{FEATURE_NAME}/$FEATURE_NAME_ESCAPED/g; s/{DATE}/$DATE/g" \
+            sed "s/{FEATURE_NAME}/$FEATURE_NAME_ESCAPED/g; s/{FEATURE_SLUG}/$FEATURE_SLUG/g; s/{DATE}/$DATE/g" \
                 "$TEMPLATE_PATH" > "$OUTPUT_PATH"
             echo "  Created: $template"
         else
@@ -60,19 +57,18 @@ if git rev-parse --git-dir >/dev/null 2>&1; then
     fi
 fi
 
-# Write context file for hooks to find the current feature
-# Line 1: feature slug, Line 2: worktree path (if any)
+# Write context file for hooks (Line 1: slug, Line 2: worktree path if any)
 if [ -n "$WORKTREE_PATH" ]; then
-    printf "%s\n%s\n" "$FEATURE_SLUG" "$WORKTREE_PATH" > .feature-dev-context
+    printf "%s\n%s\n" "$FEATURE_SLUG" "$WORKTREE_PATH" > .brainstorm-context
 else
-    echo "$FEATURE_SLUG" > .feature-dev-context
+    echo "$FEATURE_SLUG" > .brainstorm-context
 fi
-echo "  Created: .feature-dev-context"
+echo "  Created: .brainstorm-context"
 
 echo ""
-echo "Feature initialized: plans/$FEATURE_SLUG/"
+echo "Brainstorm initialized: brainstorms/$FEATURE_SLUG/"
 echo ""
 echo "Planning files:"
-echo "  - plans/$FEATURE_SLUG/task_plan.md   (phase tracking)"
-echo "  - plans/$FEATURE_SLUG/findings.md    (research storage)"
-echo "  - plans/$FEATURE_SLUG/progress.md    (session logging)"
+echo "  - brainstorms/$FEATURE_SLUG/brainstorm.md        (session tracking)"
+echo "  - brainstorms/$FEATURE_SLUG/task_breakdown.md    (task details)"
+echo "  - brainstorms/$FEATURE_SLUG/linear_issues.md     (Linear issue content)"

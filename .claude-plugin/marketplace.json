@@ -10,6 +10,12 @@
       "source": "./plugins/feature-dev-planner",
       "description": "7-phase feature development workflow with persistent markdown planning",
       "version": "1.0.0"
+    },
+    {
+      "name": "feature-brainstorm",
+      "source": "./plugins/feature-brainstorm",
+      "description": "Brainstorm large features, break into tasks, and push to Linear",
+      "version": "1.0.0"
     }
   ]
 }
