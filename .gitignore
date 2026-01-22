@@ -1,4 +1,8 @@
 .feature-dev-context
+.implement-context
+.brainstorm-context
 plans/
+implementations/
+brainstorms/
 .claude/
 CLAUDE.md

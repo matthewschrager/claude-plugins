@@ -146,16 +146,23 @@ Then **read all three brainstorm files** to understand the structure.
 1. Launch `task-breakdown-expert` agents with the approved scope
 2. For each task, generate in `task_breakdown.md`:
    - Title and summary
-   - Full context (standalone readable)
-   - Acceptance criteria (specific, testable)
+   - Context (RELATIONAL - how task fits, not foundational)
+   - Acceptance criteria with concrete examples for each
+   - **Test Requirements** (ALWAYS include: test file, pattern reference, test cases)
    - Suggested approach (concrete steps)
-   - Relevant files (with purpose)
+   - Relevant files with **Action column** (read/modify/create)
    - Dependencies (which tasks first)
    - Complexity (S/M/L)
-3. Create dependency graph
-4. **Review full breakdown with user**
-5. Iterate based on feedback
-6. Mark Phase 4 complete
+3. Include **conditional sections** based on complexity:
+   - **Interface Contract**: If task creates/modifies APIs, types, or signatures
+   - **Edge Cases**: If complexity is M or L (3-5 cases)
+4. Create **Execution Plan** with:
+   - Visual DAG showing task phases (sequential vs parallel)
+   - Parallel opportunities (tasks with no interdependencies)
+   - Critical path (longest dependency chain)
+5. **Review full breakdown with user**
+6. Iterate based on feedback
+7. Mark Phase 4 complete
 
 ### Task Sizing Guidelines
 
@@ -176,6 +183,12 @@ Then **read all three brainstorm files** to understand the structure.
 
 If a task seems larger than L, break it down further.
 
+### Task Spec Quality Checklist
+- [ ] Every acceptance criterion has a concrete example
+- [ ] Test Requirements section specifies file, pattern, and cases
+- [ ] Relevant Files includes Action column
+- [ ] Context is relational (how task fits) not foundational (what feature is)
+
 ---
 
 ## Phase 5: Linear Push
@@ -187,18 +200,43 @@ If a task seems larger than L, break it down further.
 **Actions**:
 1. Prepare `linear_issues.md` with formatted content for each issue
 2. Ask user for Linear team (use Linear MCP tools to list teams if needed)
-3. Create parent issue (Epic):
+3. Create parent issue (Epic) with **rich context**:
    - Title: Feature name
-   - Description: Overview, problem, scope from brainstorm.md
+   - Description must include:
+     - Overview and Problem Statement
+     - **User Journeys** (key flows this feature enables)
+     - Success Criteria
+     - **Technical Context** (architecture decisions, patterns to follow, integration points)
+     - **Scope** (explicit in/out for MVP)
+     - **Testing Strategy** overview
+     - **Execution Plan** (visual DAG with phases, parallel opportunities, critical path)
    - Labels: epic, feature
 4. Create sub-issues for each task:
    - Title: Task title
-   - Description: Full spec (context, criteria, approach, files)
+   - Description: Full spec including:
+     - Context (relational, not foundational)
+     - Acceptance criteria with examples
+     - **Test Requirements** (file, pattern, cases)
+     - Suggested approach
+     - Relevant files with actions
+     - Interface Contract (if applicable)
+     - Edge Cases (if M/L complexity)
    - Parent: Link to parent issue
    - Labels: task, feature-slug
 5. Update `linear_issues.md` with URLs
 6. Present summary to user with all Linear URLs
 7. Mark Phase 5 complete
+
+### Parent vs Task: Separation of Concerns
+
+| Content | Lives In | Rationale |
+|---------|----------|-----------|
+| Problem statement, user personas | Parent only | Foundational context - read once |
+| Architecture decisions, patterns | Parent only | Reference material for all tasks |
+| MVP scope (in/out) | Parent only | Shared boundary definition |
+| How task fits into feature | Task only | Relational context |
+| Specific acceptance criteria | Task only | Implementation target |
+| Test cases, file paths | Task only | Execution details |
 
 ---
 
