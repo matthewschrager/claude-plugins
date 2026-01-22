@@ -1,7 +1,7 @@
 ---
 name: task-breakdown-expert
 description: Decomposes features into well-scoped, self-contained tasks suitable for implementation by a coding agent in 1-2 sessions
-tools: Glob, Grep, Read, Bash, NotebookRead, WebFetch, TodoWrite, WebSearch
+tools: Glob, Grep, Read, Bash, WebFetch, TodoWrite, WebSearch
 color: magenta
 ---
 
