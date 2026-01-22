@@ -13,51 +13,82 @@
 ## Task Details
 
 <!--
-Task template format:
+TASK TEMPLATE - Use this format for each task:
 
 ### Task N: [Title]
 
-**Summary:** [2-3 sentence description]
-
+**Summary:** [2-3 sentences]
 **Complexity:** [S/M/L]
-
 **Dependencies:** [None | Task X, Task Y]
 
 #### Context
-[Full background - why this task exists, what problem it solves, how it fits into the larger feature]
+[How this task fits into the feature - NOT a repeat of the parent issue]
+- What this task enables (user journey, capability)
+- Why it exists in this sequence (dependencies, prerequisites)
+- What breaks or is missing if this task is skipped
 
 #### Acceptance Criteria
-- [ ] [Specific, testable criterion]
+- [ ] [Criterion] - Example: [concrete input → output]
+- [ ] [Criterion] - Example: [concrete input → output]
+
+#### Interface Contract
+<!-- INCLUDE IF: task creates/modifies functions, APIs, or types -->
+```typescript
+// Function signatures, types, API shapes
+interface Example { ... }
+function doThing(input: Type): ReturnType
+```
+
+#### Test Requirements
+**Test file:** `path/to/feature.test.ts`
+**Pattern to follow:** `path/to/similar.test.ts`
+**Tests to write:**
+- [ ] [Test case description]
+- [ ] [Test case description]
+
+#### Edge Cases
+<!-- INCLUDE IF: complexity M or L -->
+| Scenario | Input | Expected Behavior |
+|----------|-------|-------------------|
+| [edge case] | [example] | [what should happen] |
 
 #### Suggested Approach
-1. [Step 1]
-2. [Step 2]
+1. [Step with file path]
+2. [Step with pattern to follow]
 
 #### Relevant Files
-| File | Purpose |
-|------|---------|
+| File | Purpose | Action |
+|------|---------|--------|
+| path/file.ts | [why relevant] | read/modify/create |
 
 #### Notes
-[Additional context, edge cases]
+[Optional: warnings, gotchas, additional context]
 
 ---
 -->
 
 <!-- Tasks will be added below -->
 
-## Dependency Graph
+## Execution Plan
 
 ```
-[Visual representation of task dependencies]
-Task 1 (no deps)
-   |
-   v
-Task 2 (depends on 1)
-   |
-   +---> Task 3 (depends on 2)
-   |
-   +---> Task 4 (depends on 2)
+[Visual DAG showing task phases and parallelization]
+
+Phase 1 (sequential):
+  Task 1: [name]
+     │
+     ├── Phase 2 (parallel):
+     │   ├── Task 2: [name]
+     │   ├── Task 3: [name]
+     │   └── Task 4: [name]
+     │
+     v
+Phase 3 (sequential):
+  Task 5: [name] (requires 2, 3, 4)
 ```
+
+**Parallel opportunities:** [Which tasks can run concurrently]
+**Critical path:** [Longest dependency chain that determines minimum completion time]
 
 ## Estimation Summary
 

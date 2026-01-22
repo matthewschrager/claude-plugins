@@ -1,8 +1,7 @@
 ---
 name: brainstorm-facilitator
 description: Explores codebases and generates ideas for feature implementation, identifying patterns, integration points, and architectural considerations
-tools: Glob, Grep, LS, Read, NotebookRead, WebFetch, TodoWrite, WebSearch, KillShell, BashOutput
-model: sonnet
+tools: Glob, Grep, Read, Bash, NotebookRead, WebFetch, TodoWrite, WebSearch
 color: cyan
 ---
 
