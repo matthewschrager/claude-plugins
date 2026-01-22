@@ -1,2 +1,4 @@
 .feature-dev-context
 plans/
+.claude/
+CLAUDE.md
