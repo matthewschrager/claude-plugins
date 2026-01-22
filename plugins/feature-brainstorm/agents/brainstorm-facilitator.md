@@ -1,7 +1,7 @@
 ---
 name: brainstorm-facilitator
 description: Explores codebases and generates ideas for feature implementation, identifying patterns, integration points, and architectural considerations
-tools: Glob, Grep, Read, Bash, NotebookRead, WebFetch, TodoWrite, WebSearch
+tools: Glob, Grep, Read, Bash, WebFetch, TodoWrite, WebSearch, KillShell, BashOutput, ListMcpResources, ReadMcpResource
 color: cyan
 ---
 

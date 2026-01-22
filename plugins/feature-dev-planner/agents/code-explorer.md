@@ -1,7 +1,7 @@
 ---
 name: code-explorer
 description: Deeply analyzes existing codebase features by tracing execution paths, mapping architecture layers, understanding patterns and abstractions, and documenting dependencies to inform new development
-tools: Glob, Grep, Read, Bash, NotebookRead, WebFetch, TodoWrite, WebSearch
+tools: Glob, Grep, Read, Bash, WebFetch, TodoWrite, WebSearch, KillShell, BashOutput
 color: yellow
 ---
 

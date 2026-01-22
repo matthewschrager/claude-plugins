@@ -1,7 +1,7 @@
 {
   "name": "feature-brainstorm",
   "description": "Brainstorm large features, break them into tasks, and push to Linear",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": {
     "name": "Matthew Schrager",
     "url": "https://github.com/matthewschrager"
