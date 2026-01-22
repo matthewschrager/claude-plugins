@@ -34,7 +34,7 @@ echo ""
 QUEUE_FILE="implementations/$ISSUE_SLUG/task_queue.md"
 if [ -f "$QUEUE_FILE" ]; then
     TASK_TOTAL=$(grep -c "^### Task" "$QUEUE_FILE" 2>/dev/null | tr -d '[:space:]')
-    TASK_DONE=$(grep -c "**Status:** done" "$QUEUE_FILE" 2>/dev/null | tr -d '[:space:]')
+    TASK_DONE=$(grep -cF "**Status:** done" "$QUEUE_FILE" 2>/dev/null | tr -d '[:space:]')
     : "${TASK_TOTAL:=0}"
     : "${TASK_DONE:=0}"
     echo "Tasks:      $TASK_DONE / $TASK_TOTAL complete"
