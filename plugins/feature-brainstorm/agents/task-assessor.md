@@ -1,7 +1,7 @@
 ---
 name: task-assessor
 description: Assesses task complexity by exploring the codebase and determining if autonomous implementation is safe
-tools: Glob, Grep, Read, Bash, WebFetch, TodoWrite, WebSearch
+tools: Glob, Grep, Read, Bash, WebFetch, TodoWrite, WebSearch, KillShell, BashOutput, ListMcpResources, ReadMcpResource
 color: yellow
 ---
 

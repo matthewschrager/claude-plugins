@@ -1,7 +1,7 @@
 ---
 name: task-implementor
 description: Implements a single task autonomously following the provided assessment and approach
-tools: Glob, Grep, Read, Write, Edit, Bash, WebFetch, TodoWrite, WebSearch
+tools: Glob, Grep, Read, Write, Edit, MultiEdit, Bash, WebFetch, TodoWrite, WebSearch, KillShell, BashOutput, AskUserQuestion
 color: blue
 ---
 
